@@ -1,1 +1,1 @@
-# node_seqlize_sample
+# Node Sequilize Sample With Migrations & Associations
