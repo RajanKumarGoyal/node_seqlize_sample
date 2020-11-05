@@ -20,3 +20,22 @@ $(document).ready(function () {
     });
     
 });
+
+/**** Fetch Lat Lng From Autocomplete Api Google ****/
+function initAutocomplete() {
+
+    const input = document.getElementById("pac-input");
+    let autocomplete = new google.maps.places.Autocomplete(input);
+
+    autocomplete.setComponentRestrictions({
+        country: ["in"],
+    });
+
+    autocomplete.addListener("place_changed", () => {
+
+        const place = autocomplete.getPlace();
+
+        document.getElementById('lat-input').value = place.geometry.location.lat();
+        document.getElementById('lng-input').value = place.geometry.location.lng();
+    });
+}
