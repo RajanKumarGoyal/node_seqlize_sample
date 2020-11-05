@@ -1,9 +1,13 @@
 # Description
-Node Sequilize Sample With 
-Migrations & Associations
+A Sample App Project in Node Js Using Express Js Freamwork. 
+We are using Seqlize for database management. Define your Database
+Credentials in "config/config.json" file.
 
 # Install Dependencies
 npm install
+
+# To Create Database Tables, Run the migrations
+npm run migrate
 
 # Run the Project
 npm run dev
