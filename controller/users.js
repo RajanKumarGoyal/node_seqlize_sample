@@ -36,9 +36,12 @@ const register = async (req, res) => {
             }
         }
         catch (e) {
-            console.log("entering catch block");
-            console.log(e);
-            console.log("leaving catch block");
+            const errObj = [];
+            e.errors.map( er => {
+                errObj[er.path] = er.message;
+            });
+
+            console.log(errObj);
         }
     }
 
@@ -78,10 +81,6 @@ const login = (req, res) => {
 }
 
 const index = async (req, res) => {
-
-    const project = await model.User.findByPk(1);
-    console.log(project);
-
     const results = await model.User.findAll();
     res.render('users/index', {
         results: results,
@@ -89,8 +88,23 @@ const index = async (req, res) => {
     });
 }
 
+const view = async (req, res) => {
+
+    const id = req.params.id;
+
+    const user = await model.User.findByPk(id);
+    const places = await user.getPlaces();
+
+    res.render('users/view', {
+        places: places,
+        title: 'User View',
+        user: user
+    });
+}
+
 module.exports = {
     register,
     login,
-    index
+    index,
+    view
 }

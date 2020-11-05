@@ -1,13 +1,25 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
 .btn.btn-success.add-btn {
-  margin-bottom: 10px;
-  float: right;
+    margin-bottom: 10px;
+    float: right;
+}
+
+.user-profile {
+    margin-bottom: 18px;
+}
+
+.user-profile-info {
+    margin-top: 14px;
+}
+
+td.table-no-data {
+    text-align: center;
 }

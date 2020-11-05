@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            Place.belongsTo(models.User)
+            Place.belongsTo(models.User, { foreignKey: 'user_id' })
         }
     };
     Place.init({

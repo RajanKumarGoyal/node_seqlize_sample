@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon app.js",
-    "migrate": "npx sequelize-cli db:migrate"
+    "migrate": "npx sequelize-cli db:migrate",
+    "start-dev": "DEBUG=express:* node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

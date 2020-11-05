@@ -1,0 +1,37 @@
+<section>
+
+    <div class="user-profile">
+        <img src="/images/default-user.png" class="img-circle" alt="Cinque Terre">
+
+        <div class="user-profile-info">
+            <p><label>Name: </label> {{this.user.firstName}} {{this.user.lastName}}</p>
+            <p><label>Email: </label>: {{this.user.email}}</p>
+        </div>
+    </div>
+
+    <table class="table table-bordered" id="mytable">
+        <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Name</th>
+                <th>Lat</th>
+                <th>Lng</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each places}}
+            <tr>
+                <td>{{ id }}</td>
+                <td>{{ name }}</td>
+                <td>{{ lat }}</td>
+                <td>{{ lng }}</td>
+            </tr>
+            {{else}}
+                <td colspan="4" class="table-no-data">
+                    <img src="/images/no-data-found.png" class="img-circle" alt="Cinque Terre">
+                </td>
+            {{/each}}
+        </tbody>
+    </table>
+
+</section>
