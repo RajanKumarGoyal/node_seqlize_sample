@@ -1,0 +1,34 @@
+<section>
+    <h2>Place List</h2>
+
+    {{#if message}}
+        <div class="alert {{messageClass}}" role="alert">
+            {{message}}
+        </div>
+    {{/if}}
+
+    <a class="btn btn-success add-btn" href="/places/create">Add New</a>
+    <table class="table table-bordered" id="mytable">
+        <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Owner</th>
+                <th>Place Name</th>
+                <th>Lat</th>
+                <th>Lng</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each results }}
+            <tr>
+                <td>{{ @key }}</td>
+                <td>{{ User.email }}</td>
+                <td>{{ name }}</td>
+                <td>{{ lat }}</td>
+                <td>{{ lng }}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+</section>
