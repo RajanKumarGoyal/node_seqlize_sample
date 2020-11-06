@@ -48,36 +48,34 @@ const register = async (req, res) => {
     res.render('users/register');
 }
 
-const login = (req, res) => {
-    if (req.method === 'GET') 
+const login = async (req, res) => {
+
+    if (req.method == 'POST')
     {
-        res.render('users/login');
-
-    } else {
-
         const { email, password } = req.body;
-        let resp = User.login(email, password);
+        const hashedPassword = getHashedPassword(password);
+        const user = await model.User.findOne({ where: { email: email, password: hashedPassword } });
 
-        console.log(resp);
-
-        /**
-         * Setting the auth token in cookies
-         * & Redirect user to protected page
-         */
-        if (resp.status == 200) 
+        if (user) 
         {
-            res.cookie('AuthToken', resp.token);
+            const authToken = generateAuthToken();
+
+            /**
+             * Store authentication token
+             */
+            authTokens[authToken] = user;
+
+            res.cookie('AuthToken', authToken);
             res.redirect('/places');
-
-        } else {
-
-            res.render('users/login', {
-                message: 'Invalid username or password',
-                messageClass: 'alert-danger'
-            });
         }
 
-    }  
+        res.render('users/login', {
+            message: 'Invalid username or password',
+            messageClass: 'alert-danger'
+        });
+    }
+
+    res.render('users/login');
 }
 
 const index = async (req, res) => {

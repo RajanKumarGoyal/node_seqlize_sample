@@ -5,6 +5,8 @@ const User = require('../controller/users');
 const Home = require('../controller/home');
 const Place = require('../controller/places');
 
+const { authHandler } = require('../middleware/auth');
+
 // Handle all the home page routes
 router.get('/', Home.index);
 
@@ -15,7 +17,7 @@ router.get ('/users/register', User.register).post('/users/register', User.regis
 router.get('/users/login', User.login).post('/users/login', User.login);
 
 // Handle all the places related routes
-router.get('/places', Place.index);
-router.get ('/places/create', Place.create).post('/places/create', Place.create);
+router.get('/places', authHandler, Place.index);
+router.get ('/places/create', authHandler, Place.create).post('/places/create', authHandler, Place.create);
 
 module.exports = router;
