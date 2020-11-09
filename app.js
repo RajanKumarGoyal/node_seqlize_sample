@@ -5,6 +5,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 /**
+ * Third Party Additional Packages
+ */
+require('dotenv').config();
+
+/**
  * Routing File Defined Here!
  * & Routes Files will be declared here.
  */
