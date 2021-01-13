@@ -65,20 +65,29 @@ const login = async (req, res) => {
              */
             authTokens[authToken] = user;
 
+            // res.status(200).json(authTokens);
+
             res.cookie('AuthToken', authToken);
             res.redirect('/places');
+
+        } else {
+
+            res.render('users/login', {
+                message: 'Invalid username or password',
+                messageClass: 'alert-danger'
+            });
         }
 
-        res.render('users/login', {
-            message: 'Invalid username or password',
-            messageClass: 'alert-danger'
-        });
-    }
+    } else {
 
-    res.render('users/login');
+        res.render('users/login');
+    }
 }
 
 const index = async (req, res) => {
+
+    console.log(authTokens);
+
     const results = await model.User.findAll();
     res.render('users/index', {
         results: results,
