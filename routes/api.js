@@ -11,6 +11,8 @@ const User = require('../controller/api/users');
 router.post('/login', cors(), User.login);
 router.post('/create-intent', cors(), User.createStripeIntent);
 
+router.get('/send-mail', cors(), User.sendMail);
+
 // Handle all the places api routes
 router.get('/fetch/places', cors(), apiAuthHandler, Place.index);
 router.get('/place/:id/view', cors(), apiAuthHandler, Place.view);

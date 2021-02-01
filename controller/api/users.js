@@ -13,6 +13,8 @@ const StatusCodes = require('../../helpers/StatusCode');
 const Stripe = require('stripe');
 const stripe = Stripe('sk_test_ryfDM5JwcRme8JovxByaWif3');
 
+var nodemailer = require('nodemailer');
+
 const login = async (req, res) => {
 
     const { email, password } = req.body;
@@ -58,9 +60,9 @@ const login = async (req, res) => {
 const createStripeIntent = async (req, res) => {
 
     if (req.method === 'POST') {
-        
+
         // const { amount } = req.body;
-        
+
         const paymentIntent = await stripe.paymentIntents.create({
             amount: '1000',
             currency: 'usd',
@@ -76,7 +78,38 @@ const createStripeIntent = async (req, res) => {
     }
 };
 
+const sendMail = (req, res) => {
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'demotpss@gmail.com',
+            pass: 'Demo@1234%'
+        }
+    });
+
+    var mailOptions = {
+        from: 'demotpss@gmail.com',
+        to: 'rajankumartpss@gmail.com',
+        subject: 'Sending Email using Node.js',
+        text: 'That was easy!'
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+
+        if (error) {
+            console.log(error);
+            res.status(200).json({'Error' : error});
+
+        } else {
+            console.log('Email sent: ' + info.response);
+            res.status(200).json({'Completed' : info.response});
+        }
+    });
+}
+
 module.exports = {
     login,
-    createStripeIntent
+    createStripeIntent,
+    sendMail
 }
